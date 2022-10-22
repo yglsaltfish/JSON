@@ -1,16 +1,26 @@
 cmake_minimum_required(VERSION 3.1.0)
 
-project(MiniJson)
+project(Json)
+
 message("current build type is ${CMAKE_BUILD_TYPE}")
 
-# Use C++17
-set(CMAKE_CXX_STANDARD 17)
+include_directories(include)
+
+
+aux_source_directory(src  DIR_SRCS)
+
+set(TEST ${DIR_SRCS})
+
+# Use C++14
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-message(STATUS "C++17 support has been enabled by default.")
+message(STATUS "C++14 support has been enabled by default.")
 
-add_subdirectory("Source")
+#add_executable(${PROJECT_NAME} ${TEST})
+#include_directories("src")
 
-if (ENABLE_MINIJSON_TEST)
-    add_subdirectory("gtest")
-    add_subdirectory("UnitTest")
-endif()
+#add_subdirectory("src")
+
+#add_subdirectory("include")
+
+add_subdirectory("UnitTest")

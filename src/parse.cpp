@@ -12,8 +12,19 @@ void Parser::parseWhitespace() noexcept{
     _start = _curr;
 }
 
+inline void Parser::EXPECT(char  C)
+{
+    assert(*(this->_curr) == C);
+    this->_curr ++;
+}
 
-
-
+int Parser::Parse_Null()
+{
+    EXPECT('n');
+    if(_curr[0]!= 'u' || _curr[1] != 'l' || _curr[2] != 'l')
+        return (int)State::Parse_Invalid_Value;
+    _curr += 3;
+    return (int)State::Parse_OK;
+}
 
 }
