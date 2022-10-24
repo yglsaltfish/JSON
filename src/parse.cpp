@@ -39,10 +39,8 @@ Json Parser::Parse_Value()
     case 'n':  return ParseLiteral("null");
     case 't':  return ParseLiteral("true");
     case 'f':  return ParseLiteral("false");
-    
 
     default: return parseNumber();
-
     }
 }
 
@@ -70,13 +68,45 @@ Json Parser::parseNumber()
     {
         ++_curr;
         if(*_curr == '-' || *_curr == '+') ++_curr;
-        if()
-
+        if(!is0to9(*_curr)) error("Invalid Value");
+        while (is0to9(*++_curr));
+        
     }
+
+    double val = std::strtod(_start,nullptr);
+    _start = _curr;
+    return Json(val);
+}
+
+
+std::string Parser::ParseRawString()
+{
+    std::string str;
+    while (1)
+    {
+        switch (*++_curr)
+        {
+        case '\"': _start = _curr;return str;
+        case '\0': error("Miss Quotation Mark");
+        case '\\':
+            switch (*++_curr)
+            {
+             
+            
+            default:
+                break;
+            }
+            default:
+                break;
+
+
+        
+        }
+    }
+    
 
 
 }
-
 
 
 Json Parser::Json_Parse()

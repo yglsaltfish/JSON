@@ -25,7 +25,7 @@ public:    //parse interface
     Json parseNumber();
     Json Parse_Value();
     Json ParseLiteral(const std::string &literal);
-
+    std::string ParseRawString();
 
     [[noreturn]] void error(const std::string &msg) const{
         throw JsonException(msg+" "+_start);

@@ -16,7 +16,7 @@ static void test_parse_null(){
     Parser p(t);
     //EXPECT_EQ((int)State::Parse_Invalid_Value, p.Parse_Null());
     //assert((int)State::Parse_Invalid_Value == p.Parse_Null());
-    std::cout << p.Parse_Null() << std::endl;
+    //std::cout << p.Parse_Null() << std::endl;
     std::cout<<std::endl;
 }
 

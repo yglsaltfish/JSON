@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/Json.dir/test.cpp.o CMakeFiles/Json.dir/__/src/parse.cpp.o  -o Json  -lgtest 
