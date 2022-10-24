@@ -1,0 +1,5 @@
+/home/water/Desktop/C++/JSON/build/CMakeFiles/rebuild_cache.dir
+/home/water/Desktop/C++/JSON/build/CMakeFiles/edit_cache.dir
+/home/water/Desktop/C++/JSON/build/UnitTest/CMakeFiles/rebuild_cache.dir
+/home/water/Desktop/C++/JSON/build/UnitTest/CMakeFiles/edit_cache.dir
+/home/water/Desktop/C++/JSON/build/UnitTest/CMakeFiles/Json.dir

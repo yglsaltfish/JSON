@@ -1,6 +1,7 @@
 #pragma once
 
 #include "jsonException.h"
+#include "json.h"
 #include <string>
 
 namespace LJson
@@ -8,24 +9,6 @@ namespace LJson
 inline bool is1to9(char ch) { return ch >= '1' && ch <= '9';}
 inline bool is0to9(char ch) { return ch >= '0' && ch <= '9';}
 
-enum class JsonType
-{
-    kNull,
-    KTrue,
-    KFalse,
-    kNumber,
-    kString,
-    kArray,
-    kObject
-};
-
-enum class State
-{
-    Parse_OK = 0,
-    Parse_Expect_Value,
-    Parse_Invalid_Value,
-    Parse_Root_Not_Singular
-};
 
 class Parser{
 
@@ -37,17 +20,28 @@ public: //uncopyable
     Parser(const Parser&) = delete;
     Parser& operator=(const Parser&) = delete;
 
-public: //assert
-    inline void EXPECT(char c);
-
 public:    //parse interface
     void parseWhitespace()noexcept;
-    int Parse_Null();
+    Json parseNumber();
+    Json Parse_Value();
+    Json ParseLiteral(const std::string &literal);
+
+
+    [[noreturn]] void error(const std::string &msg) const{
+        throw JsonException(msg+" "+_start);
+    }
+
+public: // total parse interface
+    Json Json_Parse();
+    
+
     
 
 private:    //private member
     const char* _start;
     const char* _curr;
+
+
 
 };
 

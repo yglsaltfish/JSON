@@ -1,6 +1,8 @@
 #include "parse.h"
+#include "jsonException.h"
 #include <cassert>
 #include <cstring>
+#include <stdexcept>
 
 namespace LJson
 {
@@ -12,19 +14,74 @@ void Parser::parseWhitespace() noexcept{
     _start = _curr;
 }
 
-inline void Parser::EXPECT(char  C)
+
+
+Json Parser::ParseLiteral(const std::string& literal)
 {
-    assert(*(this->_curr) == C);
-    this->_curr ++;
+    if(strncmp(_curr ,literal.c_str(),literal.size()) )
+        error("Invalid Value");
+    _curr += literal.size();
+    _start = _curr;
+    switch(literal[0])
+    {
+        case 't' : return Json(true);
+        case 'f' : return Json(false);
+        default : return Json(nullptr);
+    }
+    
 }
 
-int Parser::Parse_Null()
+
+Json Parser::Parse_Value()
 {
-    EXPECT('n');
-    if(_curr[0]!= 'u' || _curr[1] != 'l' || _curr[2] != 'l')
-        return (int)State::Parse_Invalid_Value;
-    _curr += 3;
-    return (int)State::Parse_OK;
+    switch (*_curr)
+    {
+    case 'n':  return ParseLiteral("null");
+    case 't':  return ParseLiteral("true");
+    case 'f':  return ParseLiteral("false");
+    
+
+    default: return parseNumber();
+
+    }
+}
+
+Json Parser::parseNumber()
+{
+    if(*_curr == '-') ++_curr;
+
+    //int
+    if(*_curr == '0') ++ _curr;
+    else
+    {
+        if(!is1to9(*_curr)) error("Invalid Value");
+        while (is0to9(*++_curr));
+    }
+
+    //frac
+    if(*_curr == '.')
+    {
+        if(!is0to9(*++_curr)) error("Invalid Value");
+        while (is0to9(*++_curr));
+    }
+
+    //exp
+    if(toupper(*_curr) == 'E')
+    {
+        ++_curr;
+        if(*_curr == '-' || *_curr == '+') ++_curr;
+        if()
+
+    }
+
+
+}
+
+
+
+Json Parser::Json_Parse()
+{
+
 }
 
 }
