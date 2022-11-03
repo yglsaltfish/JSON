@@ -1,0 +1,2 @@
+/usr/bin/ar qc libjson.a  CMakeFiles/json.dir/home/water/Desktop/C++/JSON/src/json.cc.o
+/usr/bin/ranlib libjson.a
