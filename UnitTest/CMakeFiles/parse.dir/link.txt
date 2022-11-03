@@ -1,2 +1,0 @@
-/usr/bin/ar qc libparse.a  CMakeFiles/parse.dir/home/water/Desktop/C++/JSON/src/parse.cc.o
-/usr/bin/ranlib libparse.a

@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++14 -Wall  -rdynamic CMakeFiles/Test.dir/test.cc.o CMakeFiles/Test.dir/home/water/Desktop/C++/JSON/src/json.cc.o CMakeFiles/Test.dir/home/water/Desktop/C++/JSON/src/parse.cc.o  -o Test 
