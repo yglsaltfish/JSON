@@ -31,7 +31,6 @@ enum class State
     Parse_Root_Not_Singular
 };
 
-
 class Json final{
 public:
     using array_t = std::vector<Json>;
@@ -39,26 +38,17 @@ public:
 
     static Json parse(const std::string &content, std::string errMsg) noexcept;
 
-
 public : //ctor
     Json(const Json&);
     Json(bool val);
     Json(std::nullptr_t);
     Json(double val);
 
-
 public : //dtor
     ~Json();
-
-    explicit Json(bool);
-
-
 
 private:
     std::unique_ptr<JsonValue> value_;
 };
-
-
-
 
 }

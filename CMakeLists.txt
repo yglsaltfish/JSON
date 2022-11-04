@@ -1,21 +1,14 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required (VERSION 2.8)
 
-project(Json)
+project (demo)
 
-message("current build type is ${CMAKE_BUILD_TYPE}")
-
-include_directories(include)
-
-
-aux_source_directory(src  DIR_SRCS)
-
-set(TEST ${DIR_SRCS})
-
-# Use C++14
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-message(STATUS "C++14 support has been enabled by default.")
+add_executable(${PROJECT_NAME} 
+	    src/json.cc
+        UnitTest/test.cc
+)
 
 
-add_subdirectory("UnitTest")
+target_include_directories(${PROJECT_NAME}
+        PRIVATE
+        ${PROJECT_SOURCE_DIR}/include
+        )
