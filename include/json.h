@@ -39,10 +39,21 @@ public:
     static Json parse(const std::string &content, std::string errMsg) noexcept;
 
 public : //ctor
-    Json(const Json&);
-    Json(bool val);
-    Json(std::nullptr_t);
-    Json(double val);
+    Json(const Json&);  
+    Json(int val):Json(1.0*val){}   //number
+    Json(double val);               //number
+    Json(bool val);                 //true/false
+    Json(std::nullptr_t);           //null
+
+    //string ctor
+    Json(const char* cstr) : Json(std::string(cstr)){}
+    Json(const std::string &);      //string
+    Json(const array_t&);           //array
+    Json(const object_t&);          //object
+
+
+
+
 
 public : //dtor
     ~Json();

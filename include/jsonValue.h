@@ -100,7 +100,37 @@ public:
     }
 };
 
+class JsonString final : public Value<std::string , JsonType::kString>
+{
+    public:
+    explicit JsonString(std::string &val): Value(std::move(val)){}
+    const std::string &toString() const override{
+        return val_;
+    }
+};
+
+class JsonArray final : public Value<Json::array_t, JsonType::kArray>
+{
+public:
+    explicit JsonArray(Json::array_t &&val) : Value(std::move(val)) {}
+    const std::vector<Json> &toArray() const override
+    {
+        return val_;
+    }
 
 
+
+};
+/*
+class JsonObject final : public Value<std::vector<Json>, JsonType::kArray>
+{
+public:
+    explicit JsonObject(std::vector<Json> &val) : Value(std::move(val)) {}
+    const std::vector<Json> &toArray() const override
+    {
+        return val_;
+    }
+};
+*/
 
 } // namespace json
