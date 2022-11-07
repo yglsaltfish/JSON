@@ -39,6 +39,7 @@ public:
     static Json parse(const std::string &content, std::string errMsg) noexcept;
 
 public : //ctor
+<<<<<<< HEAD
     Json(const Json&);
     explicit Json(bool val);
     explicit Json(std::nullptr_t);
@@ -70,6 +71,23 @@ public : //ctor
 // Access a filed of a Json array
     Json& operator[](std::size_t);
     const Json& operator[](std::size_t) const;
+=======
+    Json(const Json&);  
+    Json(int val):Json(1.0*val){}   //number
+    Json(double val);               //number
+    Json(bool val);                 //true/false
+    Json(std::nullptr_t);           //null
+
+    //string ctor
+    Json(const char* cstr) : Json(std::string(cstr)){}
+    Json(const std::string &);      //string
+    Json(const array_t&);           //array
+    Json(const object_t&);          //object
+
+
+
+
+>>>>>>> 1b90719dd8dcaa49c589c734e01ff91518706e41
 
 
 private:
