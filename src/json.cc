@@ -6,7 +6,6 @@ using namespace std;
 namespace LJson
 {
 
-<<<<<<< HEAD
     Json::Json(nullptr_t) : value_(make_unique<JsonNull>(nullptr)) {}
     Json::Json(bool val) : value_(make_unique<JsonBool>(val)) {}
     Json::Json(double val) : value_(make_unique<JsonDouble>(val)) {}
@@ -74,6 +73,8 @@ namespace LJson
             return serializeString();
         case JsonType::kArray:
             return serializeArray();
+        case JsonType::kObject:
+            return "1";
         }
     }
 
@@ -119,18 +120,6 @@ namespace LJson
     }
 
 
-=======
-//ctor
-Json::Json(bool val):value_(std::make_unique<JsonBool>(val)){}
-Json::Json(nullptr_t) : value_(std::make_unique<JsonNull>(nullptr)){}
-Json::Json(double val) : value_(std::make_unique<JsonDouble>(val)){}
-
-Json::Json(const std::string& val) : value_(std::make_unique<JsonString>(val)){} // string
-
-Json::Json(const array_t & val) : value_(std::make_unique<JsonArray>(val)){}     // array
-
-Json::~Json(){};
->>>>>>> 1b90719dd8dcaa49c589c734e01ff91518706e41
 
     bool operator==(const Json &lhs, const Json &rhs) noexcept
     {
