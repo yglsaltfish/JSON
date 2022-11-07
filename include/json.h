@@ -45,6 +45,7 @@ public : //ctor
     explicit Json(double val);
     explicit Json(int val) : Json(1.0 * val){};
     explicit Json(const array_t &); // array
+    explicit Json(const object_t &val); //object
 
     // string ctor
     explicit Json(const std::string &);
@@ -57,28 +58,35 @@ public : //ctor
     bool isNumber() const noexcept;
     bool isString() const noexcept;
     bool isArray() const noexcept;
+    bool isObject() const noexcept;
 
 //convert the JsonValue to c++ pod value
     bool toBool() const;
     double toDouble() const;
     const std::string& toString() const;
     const array_t& toArray() const;
+    const object_t &toObject() const;
 
-//serialize
+// serialize
     std::string serialize()const noexcept;
 
 // Access a filed of a Json array
     Json& operator[](std::size_t);
     const Json& operator[](std::size_t) const;
 
+    Json &operator[](const std::string &);
+    // Accesses a field of a JSON object
+    const Json &operator[](const std::string &) const;
+    
+
 
 private:
     std::string serializeString()const noexcept;
     std::string serializeArray() const noexcept;
-
+    std::string serializeObject() const noexcept;
 
 public : // dtor
-        ~Json();
+    ~Json();
 
 private:
     std::unique_ptr<JsonValue> value_;

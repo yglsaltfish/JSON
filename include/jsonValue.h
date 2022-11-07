@@ -127,10 +127,36 @@ public:
     {
         return val_[i];
     }
-    size_t size() const noexcept
+    size_t size() const noexcept override
     {
         return val_.size();
     }
 };
 
-} // namespace json
+class JsonObject final : public Value<Json::object_t, JsonType::kObject>
+{
+public:
+    explicit JsonObject(const Json::object_t &val) : Value(val) {}
+    explicit JsonObject(Json::object_t &&val) : Value(std::move(val)) {}
+
+    const Json::object_t &toObject() const override
+    {
+        return val_;
+    }
+
+    const Json &operator[](const std::string &i) const override
+    {
+        return val_.at(i);
+    }
+    Json &operator[](const std::string &i) override
+    {
+        return val_.at(i);
+    }
+
+    size_t size() const noexcept override
+    {
+        return val_.size();
+    }
+};
+
+} // namespace LJson
