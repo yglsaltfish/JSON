@@ -10,7 +10,7 @@ inline bool is1to9(char ch) { return ch >= '1' && ch <= '9';}
 inline bool is0to9(char ch) { return ch >= '0' && ch <= '9';}
 
 
-class Parser
+class Parser final
 {
 
 public: //ctor
@@ -22,16 +22,19 @@ public: //uncopyable
     Parser& operator=(const Parser&) = delete;
 
 public:    //parse interface
-    void parseWhitespace()noexcept;
-    Json parseNumber();
-    Json Parse_Value();
+    Json ParseValue();
     Json ParseLiteral(const std::string &literal);
+    Json ParseNumber();
+    Json ParseString() { return Json(ParseRawString()); }
     std::string ParseRawString();
-    unsigned parse4hex();
+    unsigned Parse4hex();
     std::string encodeUTF8(unsigned u) noexcept;
+    Json ParseArray();
+    Json ParseObject();
+    void ParseWhitespace() noexcept;
 
     [[noreturn]] void error(const std::string &msg) const{
-        throw JsonException(msg+" "+start);
+        throw JsonException(msg + " " + start);
     }
 
 public: // total parse interface

@@ -110,15 +110,15 @@ string Json::serializeString() const noexcept
 
 string Json::serializeArray() const noexcept
 {
-    string ret = "[ ";
+    string ret = "[ " ;
     for (size_t i = 0; i < value_->size(); ++i)
     {
         if (i > 0)
-            ret += ", ";
+            ret += " , ";
         
         ret += (*this)[i].serialize();
     }
-    return ret + " ]";
+    return ret + "]";
 }
 
 string Json::serializeObject() const noexcept
