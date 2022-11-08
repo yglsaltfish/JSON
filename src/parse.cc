@@ -18,7 +18,7 @@ Json Parser::ParseValue()
     case 'f':   return ParseLiteral("false");
     case '\"':  return ParseString();
     case '[':   return ParseArray();
-   // case '{':   return ParseObject();
+    case '{':   return ParseObject();
     case '\0':  error("EXPECT VALUE");
     default:    return ParseNumber();
     }
@@ -182,8 +182,6 @@ Json Parser::ParseArray()
     {
         ParseWhitespace();
         arr.push_back(ParseValue());
-        //std::cout << cnt++ << std::endl;
-        //std::cout << arr.back() << std::endl;
         ParseWhitespace();
 
         if(*curr == ',')
@@ -198,6 +196,42 @@ Json Parser::ParseArray()
     }
 }
 
+Json Parser::ParseObject()
+{
+    Json::object_t obj;
+    ++curr;
+    ParseWhitespace();
+    if(*curr == '}')
+    {
+        start = ++curr;
+        return Json(obj);
+    }
+    while (1)
+    {
+        ParseWhitespace();
+        if (*curr != '"')
+            error("MISS KEY");
 
+        std::string key = ParseRawString();
+        ParseWhitespace();
+        if (*curr++ != ':')
+            error("MISS COLON");
+        ParseWhitespace();
+
+        Json val = ParseValue();
+        obj.insert({key, val});
+        ParseWhitespace();
+        
+        if (*curr == ',')
+            ++curr;
+        else if (*curr == '}')
+        {
+            start = ++curr;
+            return Json(obj);
+        }
+        else
+            error("MISS COMMA OR CURLY BRACKET");
+    }
+}
 
 }

@@ -41,7 +41,7 @@ void Test_Parse_Number()
     cout << "-----------------Test_Parse_Number -------------------\n";
     string num = "123.3555521";
     cout << Parser(num).ParseValue() << std::endl;
-    cout << std::endl;
+    std::cout << std::endl;
 }
 
 void Test_Parse_String()
@@ -49,7 +49,7 @@ void Test_Parse_String()
     cout << "-----------------Test_Parse_String -------------------\n";
     string num = "\"123.3555521\"";
     cout << Parser(num).ParseValue() << std::endl;
-    cout << std::endl;
+    std::cout << std::endl;
 }
 
 void Test_Parse_Array()
@@ -59,8 +59,17 @@ void Test_Parse_Array()
     std::cout << Parser(num).ParseValue() << std::endl;
     num = "[ [ ] , [ 0 ] , [ 0 , 1 ] , [ 0 , 1 , 2 ] ]";
     std::cout << Parser(num).ParseValue() << std::endl;
+    std::cout << std::endl;
 }
 
+void Test_Parse_Obj()
+{
+    cout << "-----------------Test_Parse_Obj -------------------\n";
+    string num = "{ \"bool\" : true }";
+    std::cout << Parser(num).ParseValue() << std::endl;
+    num = "[ [ ] , [ 0 ] , [ 0 , 1 ] , [ 0 , 1 , 2 ] ]";
+    std::cout << Parser(num).ParseValue() << std::endl;
+}
 
 int main()
 {
@@ -68,11 +77,6 @@ int main()
     Test_Parse_Number();
     Test_Parse_String();
     Test_Parse_Array();
-
-    /*--------------test for parse--------------------*/
-    
-
-    
-
+    Test_Parse_Obj();
 
 }

@@ -7,7 +7,7 @@ project (demo)
 add_executable(${PROJECT_NAME} 
         src/json.cc
         src/parse.cc
-        UnitTest/test.cc
+        UnitTest/rough_test.cc
         
 )
 
