@@ -31,7 +31,7 @@
 
 类似下面的做法。
 ```c++
-explicit JsonArray(const Json::array_t &&val) : Value(std::move(val)) {}
+explicit JsonArray(const Json::array_t &&val) noexcept: Value(std::move(val)) {}
 ```
 主要就是类似于浅拷贝，在`vector`和`deque`中可以加速。
 
