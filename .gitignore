@@ -1,6 +1,7 @@
 *.log
 *.temp
+*.vscode
 /build
 /bin
-*.vscode
+
 

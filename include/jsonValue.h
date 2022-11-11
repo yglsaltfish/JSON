@@ -104,7 +104,7 @@ class JsonString final : public Value<std::string, JsonType::kString>
 {
 public:
     explicit JsonString(const std::string &val) : Value(val) {}
-    explicit JsonString(std::string &&val) : Value(std::move(val)) {}
+    explicit JsonString(std::string &&val) noexcept : Value(std::move(val)) {}
     const std::string &toString() const override
     {
         return val_;
@@ -115,7 +115,7 @@ public:
 class JsonArray final : public Value<Json::array_t, JsonType::kArray>{
 public:
     explicit JsonArray(const Json::array_t&val) : Value(val){}
-    explicit JsonArray(const Json::array_t &&val) : Value(std::move(val)) {}
+    explicit JsonArray(const Json::array_t &&val) noexcept : Value(std::move(val)) {}
 
     const Json::array_t& toArray() const override{
         return val_;
@@ -136,8 +136,8 @@ public:
 class JsonObject final : public Value<Json::object_t, JsonType::kObject>
 {
 public:
-    explicit JsonObject(const Json::object_t &val) : Value(val) {}
-    explicit JsonObject(Json::object_t &&val) : Value(std::move(val)) {}
+    explicit JsonObject(const Json::object_t &val)  : Value(val) {}
+    explicit JsonObject(Json::object_t &&val) noexcept : Value(std::move(val)) {}
 
     const Json::object_t &toObject() const override
     {

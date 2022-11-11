@@ -4,6 +4,8 @@
 #include "json.h"
 #include <string>
 
+
+
 namespace LJson
 {   
 inline bool is1to9(char ch) { return ch >= '1' && ch <= '9';}

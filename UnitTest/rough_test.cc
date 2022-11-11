@@ -3,6 +3,7 @@
 #include <string.h>
 #include <iostream>
 #include <unordered_map>
+#include <gtest/gtest.h>
 
 
 #include "json.h"
@@ -66,6 +67,7 @@ void Test_Parse_Obj()
 {
     cout << "-----------------Test_Parse_Obj -------------------\n";
     string num = "{ \"bool\" : true }";
+    
     std::cout << Parser(num).ParseValue() << std::endl;
     num = "[ [ ] , [ 0 ] , [ 0 , 1 ] , [ 0 , 1 , 2 ] ]";
     std::cout << Parser(num).ParseValue() << std::endl;
